@@ -644,7 +644,8 @@ Screamtracker.prototype.mix = function (mod, bufs, buflen) {
     for (var s = 0; s < buflen; s++) {
       bufs[0][s] = 0.0;
       bufs[1][s] = 0.0;
-      for (var ch = 0; ch < mod.chvu.length; ch++) mod.chvu[ch] = 0.0;
+      if (mod?.chvu?.length)
+        for (var ch = 0; ch < mod.chvu.length; ch++) mod.chvu[ch] = 0.0;
     }
     return;
   }
