@@ -34,6 +34,8 @@ export class ModPlayer {
   onReady = function () {};
   onPlay = function () {};
   onStop = function () {};
+  onNextRow = function () {};
+  onEnd = function () {};
 
   buffer = 0;
   mixerNode:ScriptProcessorNode | null = null;
@@ -83,6 +85,8 @@ export class ModPlayer {
           this.player = new Fasttracker();
           break;
       }
+      this.player.onNextRow = this.onNextRow;
+      this.player.onEnd = this.onEnd;
 
       if (this.player) this.player.onReady = this.loadSuccess;
 

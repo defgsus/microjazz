@@ -18,6 +18,7 @@ export default function Screamtracker() {
   this.clearsong();
   this.initialize();
   this.onNextRow = () => {};
+  this.onEnd = () => {};
   this.playing = false;
   this.paused = false;
   this.repeat = false;
@@ -522,6 +523,7 @@ Screamtracker.prototype.advance = function (mod) {
       mod.position = 0;
     } else {
       this.endofsong = true;
+      this.onEnd();
     }
     return;
   }
@@ -591,7 +593,7 @@ Screamtracker.prototype.process_tick = function (mod) {
 
     mod.channel[ch].oldvoicevolume = mod.channel[ch].voicevolume;
 
-    if (mod.flags & 2) {
+    if (mod.flags & 2 && mod.pattern[p]) {
       // new row
       mod.channel[ch].command = mod.pattern[p][pp + 3];
       mod.channel[ch].data = mod.pattern[p][pp + 4];
