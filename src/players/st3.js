@@ -537,7 +537,7 @@ Screamtracker.prototype.process_note = function (mod, p, ch) {
 
   n = mod.pattern[p][pp];
   s = mod.pattern[p][pp + 1];
-  if (s) {
+  if (s && mod.sample[s - 1]) {
     mod.channel[ch].sample = s - 1;
     mod.channel[ch].volume = mod.sample[s - 1].volume;
     mod.channel[ch].voicevolume = mod.channel[ch].volume;
