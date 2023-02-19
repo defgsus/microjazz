@@ -237,7 +237,7 @@ Screamtracker.prototype.initialize = function () {
   this.endofsong = false;
 
   this.channel = new Array();
-  for (i = 0; i < this.channels; i++) {
+  for (let i = 0; i < this.channels; i++) {
     this.channel[i] = new Object();
     this.channel[i].sample = 0;
     this.channel[i].note = 24;
@@ -653,7 +653,7 @@ Screamtracker.prototype.mix = function (mod, bufs, buflen) {
   }
 
   // fill audiobuffer
-  for (var s = 0; s < buflen; s++) {
+  for (let s = 0; s < buflen; s++) {
     outp[0] = 0.0;
     outp[1] = 0.0;
 
@@ -661,10 +661,10 @@ Screamtracker.prototype.mix = function (mod, bufs, buflen) {
     if (mod.stt <= 0) mod.process_tick(mod);
 
     // mix channels
-    for (var ch = 0; ch < mod.channels; ch++) {
-      var fl = 0.0;
-      fr = 0.0;
-      fs = 0.0;
+    for (let ch = 0; ch < mod.channels; ch++) {
+      let fl = 0.0;
+      let fr = 0.0;
+      let fs = 0.0;
       var si = mod.channel[ch].sample;
 
       // add channel output to left/right master outputs
@@ -715,7 +715,7 @@ Screamtracker.prototype.mix = function (mod, bufs, buflen) {
     }
 
     // done - store to output buffer
-    t = mod.volume / 64.0;
+    const t = mod.volume / 64.0;
     bufs[0][s] = outp[0] * t;
     bufs[1][s] = outp[1] * t;
     mod.stt--;
